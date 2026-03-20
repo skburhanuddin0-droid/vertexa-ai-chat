@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Base styles */
+body {
+  @apply bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-200;
+}
+
+/* Override scrollbar for light and dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(249, 250, 251);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(209, 213, 219);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(156, 163, 175);
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: rgb(31, 41, 55);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: rgb(75, 85, 99);
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(107, 114, 128);
+}

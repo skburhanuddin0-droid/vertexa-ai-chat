@@ -1,0 +1,19 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node/React
+frontend/node_modules/
+frontend/dist/
+
+# Configuration and Secrets
+.env
+.env.local
+ngrok.yml
+*.sqite3
+database.sqlite
+
+# Misc
+.DS_Store
+unused_files/
