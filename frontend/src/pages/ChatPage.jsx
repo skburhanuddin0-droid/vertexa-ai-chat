@@ -14,6 +14,7 @@ export default function ChatPage({ session }) {
     createSession,
     deleteSession,
     addMessage,
+    loaded,
   } = useChatSessions();
 
   const [loading, setLoading] = useState(false);
@@ -26,20 +27,12 @@ export default function ChatPage({ session }) {
   const [editingIdx, setEditingIdx] = useState(null);
   const [editingText, setEditingText] = useState('');
 
-  // Auto-create first session if none exist (runs once)
+  // Always start with a fresh blank session on load/login
   useEffect(() => {
-    if (Object.keys(sessions).length === 0 && !activeId) {
+    if (loaded && !activeId) {
       createSession();
     }
-  }, []);
-
-  // if sessions are loaded from Supabase and we don't yet have an activeId,
-  // choose the first available session
-  useEffect(() => {
-    if (!activeId && Object.keys(sessions).length > 0) {
-      setActiveId(Object.keys(sessions)[0]);
-    }
-  }, [sessions, activeId]);
+  }, [loaded, activeId]);
 
   // fetch server status and model list on startup
   useEffect(() => {

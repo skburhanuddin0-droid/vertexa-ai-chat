@@ -135,5 +135,6 @@ export default function useChatSessions() {
     deleteSession,
     addMessage,
     userId,
+    loaded,
   };
 }
