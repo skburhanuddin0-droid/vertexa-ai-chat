@@ -127,6 +127,20 @@ export default function useChatSessions() {
     });
   };
 
+  const truncateSession = (sessionId, upToIndex) => {
+    setSessions(prev => {
+      const session = prev[sessionId];
+      if (!session) return prev;
+      return {
+        ...prev,
+        [sessionId]: {
+          ...session,
+          messages: (session.messages || []).slice(0, upToIndex),
+        },
+      };
+    });
+  };
+
   return {
     sessions,
     activeId,
@@ -134,6 +148,7 @@ export default function useChatSessions() {
     createSession,
     deleteSession,
     addMessage,
+    truncateSession,
     userId,
     loaded,
   };

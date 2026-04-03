@@ -246,7 +246,7 @@ def chat(request: ChatRequest, req: Request) -> ChatResponse:
                         temperature=0.7,
                     )
                     # the response structure mirrors previous version
-                    response_text = resp.choices[0].message["content"]
+                    response_text = resp.choices[0].message.content
                     _store_message(session_id, "assistant", response_text, user_id=user_id)
                     return ChatResponse(response=response_text, session_id=session_id)
                 except Exception as e:

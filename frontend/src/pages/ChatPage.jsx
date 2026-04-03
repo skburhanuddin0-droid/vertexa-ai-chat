@@ -14,6 +14,7 @@ export default function ChatPage({ session }) {
     createSession,
     deleteSession,
     addMessage,
+    truncateSession,
     loaded,
   } = useChatSessions();
 
@@ -81,15 +82,13 @@ export default function ChatPage({ session }) {
   const handleEditSubmit = async (newText) => {
     if (!activeId || editingIdx === null) return;
 
-    // Remove the edited message and all following assistant messages
-    const messages = sessions[activeId]?.messages || [];
-    const newMessages = messages.slice(0, editingIdx);
+    // Remove the edited message and all following messages from the session
+    truncateSession(activeId, editingIdx);
 
-    // Update session with trimmed history
     setEditingIdx(null);
     setEditingText('');
 
-    // Send the new edited message
+    // Send the new edited message (will be appended to the now-trimmed session)
     await handleSend(newText);
   };
 
